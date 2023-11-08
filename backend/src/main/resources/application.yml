@@ -5,3 +5,17 @@ logging:
       springframework:
         boot:
           autoconfigure: ERROR
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/quizler-db
+    username: user
+    password: secret
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  sql:
+    init:
+      platform: postgresql
+      mode: always

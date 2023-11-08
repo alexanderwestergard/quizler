@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: 'postgres:15'
+    container_name: 'quizler-db'
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: quizler-db
+    ports:
+      - '5432:5432'
+    restart: always
