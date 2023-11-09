@@ -1,5 +1,7 @@
 import { Quiz } from '@/types';
-import { MouseEventHandler, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { MouseEventHandler, useEffect, useRef, useState } from 'react';
+import { Result } from './Result';
 
 export const QuizCard = (quiz: Quiz) => {
   const [questions, setQuestions] = useState(quiz.questions);
@@ -7,8 +9,8 @@ export const QuizCard = (quiz: Quiz) => {
   const answers = questions[0].answers;
   const [correct, setCorrect] = useState(false);
   const [wrong, setWrong] = useState(false);
-  const [next, setNext] = useState(false);
-  let nextButtonText = 'Next question';
+  const [score, setScore] = useState([0, questions.length]);
+  const router = useRouter();
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     const index = event.currentTarget.getAttribute('data-index');
@@ -19,14 +21,16 @@ export const QuizCard = (quiz: Quiz) => {
 
     if (isCorrect) {
       setCorrect(true);
+
+      setScore((prev) => [prev[0]++, prev[1]]);
     } else {
       setWrong(true);
     }
-    setNext(true);
   };
 
   const showResults = () => {
-    nextButtonText = 'Show result';
+    console.log('show result');
+    router.push('/quiz/' + quiz.id + '/leaderboard');
   };
 
   const handleNext: MouseEventHandler<HTMLButtonElement> = (event) => {
@@ -34,11 +38,6 @@ export const QuizCard = (quiz: Quiz) => {
     setCorrect(false);
     setWrong(false);
     setQuestions(questions);
-    console.log(questions.length);
-
-    if ((questions.length = 1)) {
-      showResults();
-    }
   };
 
   return (
@@ -57,7 +56,12 @@ export const QuizCard = (quiz: Quiz) => {
         {wrong && <p>Wrong!</p>}
       </article>
 
-      {next && <button onClick={handleNext}>{nextButtonText}</button>}
+      {(correct || wrong) &&
+        (questions.length == 1 ? (
+          <Result {...score} />
+        ) : (
+          <button onClick={handleNext}>{'Next question'}</button>
+        ))}
     </article>
   );
 };
