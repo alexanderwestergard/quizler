@@ -35,7 +35,7 @@ function Query() {
     <section className="flex flex-col items-center justify-center mx-auto w-full max-w-screen-xl">
       {quizList.map((quiz, index) => {
         return (
-          <div key="index">
+          <div key={index}>
             <QuizCard {...quiz} />
           </div>
         );
