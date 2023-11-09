@@ -34,6 +34,7 @@ function Query() {
 
   return (
     <section>
+      <h1>Quizler</h1>
       <Searchbar quizzes={quizzes} />
       <Link href={'/quiz/create'}>
         <button>Create quiz</button>
