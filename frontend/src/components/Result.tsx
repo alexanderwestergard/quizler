@@ -1,18 +1,26 @@
 import { addScore } from '@/app/functions';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
 type Props = {
   score: number[];
   name: string;
 };
 
 export const Result = ({ name, score }: Props) => {
+  const router = useRouter();
   const pathname = usePathname();
   const quizId = pathname.split('/').pop();
   if (quizId == undefined) {
     throw Error;
   }
-  addScore(name, score, +quizId);
+
+  useEffect(() => {
+    addScore(name, score[0], +quizId);
+  }, []);
+
   return (
     <div>
       <p>{name}</p>
