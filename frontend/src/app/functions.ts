@@ -1,13 +1,9 @@
-export const addScore = async (
-  name: string,
-  score: number[],
-  quizId: number
-) => {
+export const addScore = async (name: string, score: number, quizId: number) => {
   try {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, score }),
+      body: JSON.stringify({ name, score, quizId }),
     };
 
     const response = await fetch(
@@ -19,7 +15,5 @@ export const addScore = async (
       const body = await response.json();
       throw new Error(body.error.details[0].message);
     }
-  } catch (error) {
-    // setErrorMessage(`${error}`);
-  }
+  } catch (error) {}
 };
