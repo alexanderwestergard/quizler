@@ -1,4 +1,5 @@
 'use client';
+import { addQuiz } from '@/app/functions';
 import { Quiz } from '@/types';
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
@@ -10,8 +11,9 @@ export function QuizForm() {
   ]);
 
   const onSubmit = (data: Quiz) => {
+    const newQuiz = addQuiz(data);
     // Handle form submission here (e.g., send data to the server).
-    console.log(data);
+    console.log(newQuiz);
     alert('Submitted');
   };
 
@@ -31,21 +33,21 @@ export function QuizForm() {
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        onSubmit(data);
+        onSubmit(data as Quiz);
       })}
     >
-          <Controller
-            name={'name'}
-            control={control}
-            defaultValue={'New quiz'}
-            render={({ field }) => (
-              <input {...field} placeholder="Enter quiz name" />
-            )}
-          />
+      <Controller
+        name={'name'}
+        control={control}
+        defaultValue={'New quiz'}
+        render={({ field }) => (
+          <input {...field} placeholder="Enter quiz name" />
+        )}
+      />
       {questions.map((question, qIndex) => (
         <article key={qIndex}>
           <Controller
-            name={`questions[${qIndex}].text`}
+            name={`questions[${qIndex}].question`}
             control={control}
             defaultValue={question.question}
             render={({ field }) => (
