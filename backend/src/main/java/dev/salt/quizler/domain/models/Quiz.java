@@ -14,4 +14,12 @@ public class Quiz {
     @OneToMany(mappedBy = "quiz")
     private List<Question> questions;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
 }
