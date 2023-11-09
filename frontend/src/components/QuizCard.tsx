@@ -22,7 +22,7 @@ export const QuizCard = (quiz: Quiz) => {
     if (isCorrect) {
       setCorrect(true);
 
-      setScore((prev) => [prev[0]++, prev[1]]);
+      setScore((prev) => [++prev[0], prev[1]]);
     } else {
       setWrong(true);
     }
