@@ -17,8 +17,6 @@ export default function Page({ params }: { params: { id: string } }) {
 }
 
 function QuerySingleQuiz({ params }: { params: { id: string } }) {
-  console.log('hellow');
-  console.log(params.id);
   const { status, data, error } = useQuery('repo', () =>
     fetch(url + '/' + params.id).then((res) => res.json())
   );
@@ -28,7 +26,8 @@ function QuerySingleQuiz({ params }: { params: { id: string } }) {
   }
 
   if (status === 'error') {
-    return <p>Something went wrong: {error.message}</p>;
+    if (error instanceof Error)
+      return <p>Something went wrong: {error.message}</p>;
   }
 
   const quiz: Quiz = data;

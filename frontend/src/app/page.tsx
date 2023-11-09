@@ -24,7 +24,8 @@ function Query() {
   }
 
   if (status === 'error') {
-    return <p>Something went wrong: {error.message}</p>;
+    if (error instanceof Error)
+      return <p>Something went wrong: {error.message}</p>;
   }
 
   const quizList: Quiz[] = data;
