@@ -2,6 +2,7 @@
 import { QuizCard } from '@/components/QuizCard';
 import { Searchbar } from '@/components/Searchbar';
 import { Quiz } from '@/types';
+import Link from 'next/link';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
 export const queryClient = new QueryClient();
@@ -31,5 +32,12 @@ function Query() {
 
   const quizzes: Quiz[] = data;
 
-  return <Searchbar quizzes={quizzes} />;
+  return (
+    <section>
+      <Searchbar quizzes={quizzes} />
+      <Link href={'/quiz/create'}>
+        <button>Create quiz</button>
+      </Link>
+    </section>
+  );
 }

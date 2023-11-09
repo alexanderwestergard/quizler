@@ -26,7 +26,7 @@ export const Result = ({ name, score }: Props) => {
       <Link href={pathname + '/leaderboard'}>
         <button>Leaderboard</button>
       </Link>
-      <Link href="/">
+      <Link href="/quiz">
         <button>Home</button>
       </Link>
     </div>
