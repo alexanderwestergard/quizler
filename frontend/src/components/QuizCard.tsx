@@ -2,7 +2,7 @@ import { Quiz } from '@/types';
 
 export const QuizCard = (quiz: Quiz) => {
   return (
-    <div>
+    <article className='flex flex-col'>
       <h1>{quiz.id}</h1>
       {quiz.questions.map((question, index) => {
         return (
@@ -14,6 +14,6 @@ export const QuizCard = (quiz: Quiz) => {
           </article>
         );
       })}
-    </div>
+    </article>
   );
 };
