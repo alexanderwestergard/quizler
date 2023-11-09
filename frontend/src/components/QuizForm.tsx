@@ -3,6 +3,7 @@ import { addQuiz } from '@/app/functions';
 import { Quiz } from '@/types';
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { CreatedQuizModal } from './CreatedQuizModal';
 
 export function QuizForm() {
   const { control, handleSubmit, setValue } = useForm();
@@ -10,11 +11,15 @@ export function QuizForm() {
     { question: '', answers: [{ answer: '', correct: false }] },
   ]);
 
-  const onSubmit = (data: Quiz) => {
-    const newQuiz = addQuiz(data);
-    // Handle form submission here (e.g., send data to the server).
-    console.log(newQuiz);
-    alert('Submitted');
+  const [newQuiz, setNewQuiz] = useState({ name: '', id: 0 });
+
+  const [showModal, setShowModal] = useState(false);
+
+  const onSubmit = async (data: Quiz) => {
+    const newQuizData: Quiz = await addQuiz(data);
+
+    setNewQuiz({ name: newQuizData.name, id: newQuizData.id });
+    setShowModal(true);
   };
 
   const addQuestion = () => {
@@ -29,6 +34,11 @@ export function QuizForm() {
     updatedQuestions[qIndex].answers.push({ answer: '', correct: false });
     setQuestions(updatedQuestions);
   };
+  if (showModal) {
+    return (
+      <CreatedQuizModal show={showModal} name={newQuiz.name} id={newQuiz.id} />
+    );
+  }
 
   return (
     <form
@@ -36,10 +46,10 @@ export function QuizForm() {
         onSubmit(data as Quiz);
       })}
     >
+      <h1>Create new quiz</h1>
       <Controller
         name={'name'}
         control={control}
-        defaultValue={'New quiz'}
         render={({ field }) => (
           <input {...field} placeholder="Enter quiz name" />
         )}
