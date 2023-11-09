@@ -16,7 +16,7 @@ public class Quiz {
     @OneToMany(mappedBy = "quiz")
     private List<Question> questions;
 
-    @OneToMany
+    @OneToMany(mappedBy = "quiz")
     private List<Score> leaderboard;
 
 
