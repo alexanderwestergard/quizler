@@ -36,8 +36,8 @@ public class Controller {
 
 
     @GetMapping
-    public ResponseEntity<List<Quiz>> getAllQuiz() {
-        return ResponseEntity.ok(repo.findAll());
+        public ResponseEntity<List<Quiz>> getAllQuiz() {
+            return ResponseEntity.ok(repo.findAll());
     }
 
     @GetMapping("{id}")
@@ -92,7 +92,7 @@ public class Controller {
 
 
         URI location = URI.create(req.getRequestURI() + "/" + quiz.getId());
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(quiz);
 
     }
 
