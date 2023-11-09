@@ -6,10 +6,11 @@ import {
   useState,
 } from 'react';
 type Props = {
+  quizName: string;
   setName: Dispatch<SetStateAction<string>>;
 };
 
-export const EnterNameModal = ({ setName }: Props) => {
+export const EnterNameModal = ({ quizName, setName }: Props) => {
   const [open, setOpen] = useState(true);
   const inputRef = useRef<HTMLInputElement>({} as HTMLInputElement);
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
@@ -20,7 +21,8 @@ export const EnterNameModal = ({ setName }: Props) => {
   return (
     <dialog open={open}>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name</label>
+        <h1>Welcom to {quizName}!</h1>
+        <label htmlFor="name">Please enter your name</label>
         <input type="text" name="name" ref={inputRef} />
         <input type="submit" name="submit" />
       </form>
