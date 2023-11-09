@@ -34,5 +34,6 @@ export const addQuiz = async (quiz: Quiz) => {
       const body = await response.json();
       throw new Error(body.error.details[0].message);
     }
+    return response.json();
   } catch (error) {}
 };
