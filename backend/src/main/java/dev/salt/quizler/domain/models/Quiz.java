@@ -25,4 +25,8 @@ public class Quiz {
     public List<Question> getQuestions() {
         return questions;
     }
+
+    public List<Score> getLeaderboard() {
+        return leaderboard;
+    }
 }

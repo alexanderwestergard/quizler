@@ -18,6 +18,7 @@ public class Score {
     private int score;
 
     @ManyToOne
+    @JsonIgnore
     private Quiz quiz;
 
     public Score() {
@@ -27,5 +28,21 @@ public class Score {
         this.quiz = quiz;
         this.name = name;
         this.score = score;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public Quiz getQuiz() {
+        return quiz;
     }
 }
