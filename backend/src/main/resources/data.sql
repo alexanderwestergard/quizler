@@ -10,3 +10,7 @@ INSERT INTO public.answer(id, question_id, answer, is_correct) VALUES (4,2,'No',
 INSERT INTO public.question(id, quiz_id, question) VALUES (3,2,'.NET');
 INSERT INTO public.answer(id, question_id, answer) VALUES (5,3,'Yes');
 INSERT INTO public.answer(id, question_id, answer) VALUES (6,3,'No');
+INSERT INTO public.score(score, id, quiz_id, name) VALUES (1,1,1,'Kaj');
+INSERT INTO public.score(score, id, quiz_id, name) VALUES (0,3,1,'Max');
+INSERT INTO public.score(score, id, quiz_id, name) VALUES (2,2,2,'Ådi');
+INSERT INTO public.score(score, id, quiz_id, name) VALUES (1,4,2,'Tor');
