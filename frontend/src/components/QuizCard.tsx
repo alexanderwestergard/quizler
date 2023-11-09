@@ -7,6 +7,8 @@ export const QuizCard = (quiz: Quiz) => {
   const answers = questions[0].answers;
   const [correct, setCorrect] = useState(false);
   const [wrong, setWrong] = useState(false);
+  const [next, setNext] = useState(false);
+  let nextButtonText = 'Next question';
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     const index = event.currentTarget.getAttribute('data-index');
@@ -20,7 +22,25 @@ export const QuizCard = (quiz: Quiz) => {
     } else {
       setWrong(true);
     }
+    setNext(true);
   };
+
+  const showResults = () => {
+    nextButtonText = 'Show result';
+  };
+
+  const handleNext: MouseEventHandler<HTMLButtonElement> = (event) => {
+    questions.shift();
+    setCorrect(false);
+    setWrong(false);
+    setQuestions(questions);
+    console.log(questions.length);
+
+    if ((questions.length = 1)) {
+      showResults();
+    }
+  };
+
   return (
     <article>
       <h1>{quiz.id}</h1>
@@ -36,6 +56,8 @@ export const QuizCard = (quiz: Quiz) => {
         {correct && <p>Correct!</p>}
         {wrong && <p>Wrong!</p>}
       </article>
+
+      {next && <button onClick={handleNext}>{nextButtonText}</button>}
     </article>
   );
 };
