@@ -38,7 +38,7 @@ export const QuizCard = (quiz: Quiz) => {
   return (
     <article>
       <EnterNameModal setName={setName} />
-      <h1>{quiz.id}</h1>
+      <h1>{quiz.name}</h1>
       <article>
         <h2>{question}</h2>
         {answers.map((answer, index) => {

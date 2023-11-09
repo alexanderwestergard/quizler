@@ -11,6 +11,8 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     @OneToMany(mappedBy = "quiz")
     private List<Question> questions;
 
@@ -28,5 +30,9 @@ public class Quiz {
 
     public List<Score> getLeaderboard() {
         return leaderboard;
+    }
+
+    public String getName() {
+        return name;
     }
 }
