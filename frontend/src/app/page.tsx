@@ -1,9 +1,10 @@
 'use client';
 import { QuizCard } from '@/components/QuizCard';
+import { Searchbar } from '@/components/Searchbar';
 import { Quiz } from '@/types';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 const url = 'http://localhost:8080';
 
 export default function Home() {
@@ -28,18 +29,7 @@ function Query() {
       return <p>Something went wrong: {error.message}</p>;
   }
 
-  const quizList: Quiz[] = data;
-  quizList.forEach((quiz) => console.log(quiz.questions));
+  const quiz: Quiz = data;
 
-  return (
-    <section>
-      {quizList.map((quiz, index) => {
-        return (
-          <div key={index}>
-            <QuizCard {...quiz} />
-          </div>
-        );
-      })}
-    </section>
-  );
+  return <Searchbar {...quiz} />;
 }
