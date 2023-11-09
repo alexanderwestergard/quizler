@@ -1,5 +1,5 @@
 import { Quiz } from '@/types';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import { Result } from './Result';
 
@@ -10,7 +10,6 @@ export const QuizCard = (quiz: Quiz) => {
   const [correct, setCorrect] = useState(false);
   const [wrong, setWrong] = useState(false);
   const [score, setScore] = useState([0, questions.length]);
-  const router = useRouter();
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     const index = event.currentTarget.getAttribute('data-index');
@@ -26,11 +25,6 @@ export const QuizCard = (quiz: Quiz) => {
     } else {
       setWrong(true);
     }
-  };
-
-  const showResults = () => {
-    console.log('show result');
-    router.push('/quiz/' + quiz.id + '/leaderboard');
   };
 
   const handleNext: MouseEventHandler<HTMLButtonElement> = (event) => {
