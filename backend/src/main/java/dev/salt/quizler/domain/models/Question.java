@@ -19,16 +19,28 @@ public class Question {
 
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;
-
-
-
     private String question;
+
+    public Question() {
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
 
     public List<Answer> getAnswers() {
         return answers;
     }
 
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+    }
+
     public String getQuestion() {
         return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
     }
 }

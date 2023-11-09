@@ -20,6 +20,9 @@ public class Quiz {
     private List<Score> leaderboard;
 
 
+    public Quiz() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -28,11 +31,19 @@ public class Quiz {
         return questions;
     }
 
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
     public List<Score> getLeaderboard() {
         return leaderboard;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

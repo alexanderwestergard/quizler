@@ -21,12 +21,27 @@ public class Answer {
     @Column
     private Boolean isCorrect = false;
 
+    public Answer() {
+    }
+
     public String getAnswer() {
         return answer;
     }
 
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
     public Boolean getCorrect() {
         return isCorrect;
+    }
+
+    public void setCorrect(Boolean correct) {
+        isCorrect = correct;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }
 
