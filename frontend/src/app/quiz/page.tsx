@@ -16,7 +16,7 @@ export default function Home() {
 }
 
 function Query() {
-  const { status, data, error } = useQuery('repo', () =>
+  const { status, data, error } = useQuery('quiz', () =>
     fetch(url).then((res) => res.json())
   );
 
@@ -29,7 +29,7 @@ function Query() {
       return <p>Something went wrong: {error.message}</p>;
   }
 
-  const quiz: Quiz = data;
+  const quizzes: Quiz[] = data;
 
-  return <Searchbar {...quiz} />;
+  return <Searchbar quizzes={quizzes} />;
 }
