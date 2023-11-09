@@ -1,6 +1,5 @@
 import { Quiz } from '@/types';
-import { usePathname, useRouter } from 'next/navigation';
-import { MouseEventHandler, useEffect, useRef, useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import { Result } from './Result';
 import { EnterNameModal } from './EnterNameModal';
 
