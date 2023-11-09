@@ -33,7 +33,7 @@ function QuerySingleQuiz({ params }: { params: { id: string } }) {
   const quiz: Quiz = data;
 
   return (
-    <section className="flex flex-col items-center justify-center mx-auto w-full max-w-screen-xl">
+    <section>
       <QuizCard {...quiz} />
     </section>
   );

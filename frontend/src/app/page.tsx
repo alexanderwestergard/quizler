@@ -32,7 +32,7 @@ function Query() {
   quizList.forEach((quiz) => console.log(quiz.questions));
 
   return (
-    <section className="flex flex-col items-center justify-center mx-auto w-full max-w-screen-xl">
+    <section>
       {quizList.map((quiz, index) => {
         return (
           <div key={index}>
