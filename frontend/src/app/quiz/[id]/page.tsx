@@ -1,6 +1,4 @@
 'use client';
-
-'use client';
 import { QuizCard } from '@/components/QuizCard';
 import { Quiz } from '@/types';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
@@ -10,14 +8,14 @@ const url = 'http://localhost:8080';
 
 export default function Page({ params }: { params: { id: string } }) {
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient} contextSharing={true}>
       <QuerySingleQuiz params={params} />
     </QueryClientProvider>
   );
 }
 
 function QuerySingleQuiz({ params }: { params: { id: string } }) {
-  const { status, data, error } = useQuery('repo', () =>
+  const { status, data, error } = useQuery('quiz', () =>
     fetch(url + '/' + params.id).then((res) => res.json())
   );
 
