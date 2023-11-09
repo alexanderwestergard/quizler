@@ -11,5 +11,5 @@ export type Question = {
 
 export type Answer = {
   answer: string;
-  isCorrect: boolean;
+  correct: boolean;
 };
