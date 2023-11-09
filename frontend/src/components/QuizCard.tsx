@@ -2,6 +2,7 @@ import { Quiz } from '@/types';
 import { usePathname, useRouter } from 'next/navigation';
 import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import { Result } from './Result';
+import { EnterNameModal } from './EnterNameModal';
 
 export const QuizCard = (quiz: Quiz) => {
   const [questions, setQuestions] = useState(quiz.questions);
@@ -10,6 +11,9 @@ export const QuizCard = (quiz: Quiz) => {
   const [correct, setCorrect] = useState(false);
   const [wrong, setWrong] = useState(false);
   const [score, setScore] = useState([0, questions.length]);
+  const [name, setName] = useState('');
+
+  //   useEffect(() => {showModal()}, []);
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     const index = event.currentTarget.getAttribute('data-index');
@@ -36,6 +40,7 @@ export const QuizCard = (quiz: Quiz) => {
 
   return (
     <article>
+      <EnterNameModal setName={setName} />
       <h1>{quiz.id}</h1>
       <article>
         <h2>{question}</h2>
@@ -49,10 +54,9 @@ export const QuizCard = (quiz: Quiz) => {
         {correct && <p>Correct!</p>}
         {wrong && <p>Wrong!</p>}
       </article>
-
       {(correct || wrong) &&
         (questions.length == 1 ? (
-          <Result {...score} />
+          <Result name={name} score={score} />
         ) : (
           <button onClick={handleNext}>{'Next question'}</button>
         ))}
