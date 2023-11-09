@@ -13,8 +13,6 @@ export const QuizCard = (quiz: Quiz) => {
   const [score, setScore] = useState([0, questions.length]);
   const [name, setName] = useState('');
 
-  //   useEffect(() => {showModal()}, []);
-
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     const index = event.currentTarget.getAttribute('data-index');
     if (index === null) {

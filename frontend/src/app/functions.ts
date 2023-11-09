@@ -1,4 +1,8 @@
-const addScore = async (name: string, score: number, quizId: number) => {
+export const addScore = async (
+  name: string,
+  score: number[],
+  quizId: number
+) => {
   try {
     const requestOptions = {
       method: 'POST',
