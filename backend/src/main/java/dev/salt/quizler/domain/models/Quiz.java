@@ -14,6 +14,9 @@ public class Quiz {
     @OneToMany(mappedBy = "quiz")
     private List<Question> questions;
 
+    @OneToMany
+    private List<Score> leaderboard;
+
 
     public Long getId() {
         return id;

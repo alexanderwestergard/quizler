@@ -1,9 +1,10 @@
 package dev.salt.quizler.domain.controllers;
 
+import dev.salt.quizler.domain.dtos.ScoreDto;
 import dev.salt.quizler.domain.models.Quiz;
+import dev.salt.quizler.domain.models.Score;
 import dev.salt.quizler.domain.repos.QuizRepository;
-import org.hibernate.dialect.unique.CreateTableUniqueDelegate;
-import org.springframework.http.HttpStatus;
+import dev.salt.quizler.domain.repos.ScoreRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +15,11 @@ import java.util.List;
 @RequestMapping
 public class Controller {
     private final QuizRepository repo;
+    private final ScoreRepository scoreRepo;
 
-    public Controller(QuizRepository repo) {
+    public Controller(QuizRepository repo, ScoreRepository scoreRepo) {
         this.repo = repo;
+        this.scoreRepo = scoreRepo;
     }
 
 
@@ -33,6 +36,22 @@ public class Controller {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(quiz);
+    }
+
+    @PostMapping("{id}")
+    public ResponseEntity addUserScore(@PathVariable Long id, @RequestBody ScoreDto body) {
+        Quiz quiz = repo.findById(body.quizId()).orElse(null);
+
+        if (quiz == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        Score score = new Score(quiz, body.name(), body.score());
+
+        scoreRepo.save(score);
+
+        return ResponseEntity.ok().build();
+
     }
 
 }
